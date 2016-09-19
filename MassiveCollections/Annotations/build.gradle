@@ -14,11 +14,11 @@ if (!hasProperty('mainClass')) {
 }
 
 dependencies {
-    // TODO: Add dependencies here
-    //   but note that JUnit should have already been added in parent.gradle.
-    //   By default, only the Maven Central Repository is specified in
-    //   parent.gradle.
-    //
-    // You can read more about how to add dependency here:
-    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
+    // https://mvnrepository.com/artifact/org.apache.velocity/velocity
+    compile group: 'org.apache.velocity', name: 'velocity', version: '1.7'
+    
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
+    // https://mvnrepository.com/artifact/org.jmockit/jmockit
+    testCompile group: 'org.jmockit', name: 'jmockit', version: '1.27'
 }
