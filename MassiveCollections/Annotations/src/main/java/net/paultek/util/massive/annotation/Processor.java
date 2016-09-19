@@ -16,12 +16,18 @@
 package net.paultek.util.massive.annotation;
 
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Stream;
 import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Messager;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
+import javax.tools.Diagnostic;
 
 /**
  * This processor handles the generation of code from interfaces.
@@ -40,8 +46,20 @@ public class Processor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        // TODO implement me!
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        final Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(GenerateCode.class);
+        final Messager messager = processingEnv.getMessager();
+        for (Element e : elements) {
+            if (e.getKind() != ElementKind.INTERFACE) {
+                messager.printMessage(Diagnostic.Kind.ERROR, GenerateCode.class.getSimpleName() + " can only be applied on interfaces", e);
+            }
+        }
+
+        // Convert all the elements to TypeElements
+        final Stream<TypeElement> interfaces = elements.stream().map(e -> {
+            return (TypeElement) e;
+        });
+
+        return true;
     }
 
 }
