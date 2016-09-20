@@ -16,6 +16,7 @@
 package net.paultek.util.massive;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Extension of the List interface that allows indexing by long instead of int.
@@ -23,7 +24,7 @@ import java.util.Collection;
  * @author Paul Huynh [paul.viet.huynh@live.com]
  * @param <E> The type of elements in this list
  */
-public interface MassiveList<E> extends MassiveCollection<E> {
+public interface MassiveList<E> extends MassiveCollection<E>, List<E> {
 
     /**
      * Add item to the list at the index specified. All items after this index
@@ -52,7 +53,7 @@ public interface MassiveList<E> extends MassiveCollection<E> {
     E get(long i);
 
     /**
-     * Return the index of the first occurrance of the object,. Returns -1 if
+     * Return the index of the first occurrence of the object,. Returns -1 if
      * the object does not exist in the list.
      *
      * @param o The object to search for. Throws {@link NullPointerException} if
@@ -60,10 +61,10 @@ public interface MassiveList<E> extends MassiveCollection<E> {
      * @return Index of the object, or -1 if the object does not exist in the
      * list.
      */
-    long indexOf(Object o);
+    long massiveIndexOf(Object o);
 
     /**
-     * Returns the index of the last occurance of the object. Returns -1 if the
+     * Returns the index of the last occurrence of the object. Returns -1 if the
      * object does not exist in the list.
      *
      * @param o The Object to search for. Throws {@link  NullPointerException} if
@@ -71,7 +72,7 @@ public interface MassiveList<E> extends MassiveCollection<E> {
      * @return Index of the object, or -1 if the object does not exist in the
      * list.
      */
-    long lastIndexOf(Object o);
+    long massiveLastIndexOf(Object o);
 
     /**
      * Returns a list iterator over the elements in the list.
