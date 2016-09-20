@@ -35,15 +35,6 @@ public interface MassiveList<E> extends MassiveCollection<E> {
     void add(long index, E element);
 
     /**
-     * Removes the item at the index specified. All items after this index are
-     * shifted down.
-     *
-     * @param index The index at which to remove the item.
-     * @return The item that was removed.
-     */
-    E remove(long index);
-
-    /**
      * Adds all the items in the collection at the index specified. Any items
      * after this index will be shifted up.
      *
@@ -101,4 +92,45 @@ public interface MassiveList<E> extends MassiveCollection<E> {
      * @return A list iterator positioned at the index specified.
      */
     MassiveListIterator<E> massiveListIterator(long index);
+
+    /**
+     * Removes the item at the index specified. All items after this index are
+     * shifted down.
+     *
+     * @param index The index at which to remove the item.
+     * @return The item that was removed.
+     */
+    E remove(long index);
+
+    /**
+     * Set the element at the specified index to be the element passed in. Does
+     * NOT shift the surrounding elements.
+     *
+     * @param index The index of the element that will be set.
+     * @param element The set to set at the index specified.
+     */
+    void set(long index, E element);
+
+    /**
+     * Gets the true number of elements in the list. This is 'true' compared
+     * with the regular {@link #size()} method, with maxes out at
+     * {@link Integer#MAX_VALUE}. Note that we could try to fill a list with
+     * more than {@link Long#MAX_VALUE}, but that is a LOOOOOOT of elements (9
+     * quintillion, that's 9 billion billion elements).
+     *
+     * @return The number of elements in the list. May be 0 if empty.
+     */
+    long massiveSize();
+
+    /**
+     * Gets a sublist of the elements. The 'zero'th element in the sublist will
+     * be the element at fromIndex in the parent list.
+     *
+     * @param fromIndex The index to start the sublist (inclusive).
+     * @param toIndex The index to end the sublist (exclusive).
+     * @return A list of the elements in between the two indices. Depending on
+     * the implementation, modifications to the sublist may result in the same
+     * changes being passed through to the parent list, and vice-versa.
+     */
+    MassiveList<E> massiveSubList(long fromIndex, long toIndex);
 }
