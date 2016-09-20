@@ -59,4 +59,46 @@ public interface MassiveList<E> extends MassiveCollection<E> {
      * @return The element at the index.
      */
     E get(long i);
+
+    /**
+     * Return the index of the first occurrance of the object,. Returns -1 if
+     * the object does not exist in the list.
+     *
+     * @param o The object to search for. Throws {@link NullPointerException} if
+     * the object is null.
+     * @return Index of the object, or -1 if the object does not exist in the
+     * list.
+     */
+    long indexOf(Object o);
+
+    /**
+     * Returns the index of the last occurance of the object. Returns -1 if the
+     * object does not exist in the list.
+     *
+     * @param o The Object to search for. Throws {@link  NullPointerException} if
+     * the object is null.
+     * @return Index of the object, or -1 if the object does not exist in the
+     * list.
+     */
+    long lastIndexOf(Object o);
+
+    /**
+     * Returns a list iterator over the elements in the list.
+     *
+     * @return A list iterator.
+     */
+    MassiveListIterator<E> massiveListIterator();
+
+    /**
+     * Returns a list iterator over the elements in the list, starting from the
+     * specified index. If the first call to the iterator is
+     * {@link MassiveListIterator#next()} it will return the element at that
+     * index. If the first call to the iterator is
+     * {@link MassiveListIterator#previous()} it will return the element at the
+     * specified index minus one.
+     *
+     * @param index The index at which to start this iterator.
+     * @return A list iterator positioned at the index specified.
+     */
+    MassiveListIterator<E> massiveListIterator(long index);
 }
