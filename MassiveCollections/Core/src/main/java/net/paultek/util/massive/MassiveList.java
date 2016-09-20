@@ -15,6 +15,8 @@
  */
 package net.paultek.util.massive;
 
+import java.util.Collection;
+
 /**
  * Extension of the List interface that allows indexing by long instead of int.
  *
@@ -40,4 +42,13 @@ public interface MassiveList<E> extends MassiveCollection<E> {
      * @return The item that was removed.
      */
     E remove(long index);
+
+    /**
+     * Adds all the items in the collection at the index specified. Any items
+     * after this index will be shifted up.
+     *
+     * @param index The index at which to add the collection of items.
+     * @param c The collection of items to add.
+     */
+    void addAll(long index, Collection<? extends E> c);
 }
