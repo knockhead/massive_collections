@@ -51,4 +51,12 @@ public interface MassiveList<E> extends MassiveCollection<E> {
      * @param c The collection of items to add.
      */
     void addAll(long index, Collection<? extends E> c);
+
+    /**
+     * Gets the element at the index specified.
+     *
+     * @param i The index of the element to get.
+     * @return The element at the index.
+     */
+    E get(long i);
 }
