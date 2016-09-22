@@ -18,9 +18,27 @@ package net.paultek.util.massive;
 import java.util.ListIterator;
 
 /**
+ * An iterator that allows forward and backward iteration through a
+ * {@link MassiveList}.
  *
  * @author Paul Huynh [paul.viet.huynh@live.com]
  */
 public interface MassiveListIterator<E> extends ListIterator<E> {
 
+    /**
+     * Gets the index of the element that would be returned by a call to
+     * {@link #next()}. Returns {@link MassiveList#massiveSize()} if at the end
+     * of the list.
+     *
+     * @return The index of the next element.
+     */
+    long massiveNextIndex();
+
+    /**
+     * Gets the index of the element that would be returned by a call to
+     * {@link #previous()}. Returns -1 if at the beginning of the list.
+     *
+     * @return The index of the previous element.
+     */
+    long massivePreviousIndex();
 }
