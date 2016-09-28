@@ -113,17 +113,6 @@ public interface MassiveList<E> extends MassiveCollection<E>, List<E> {
     void set(long index, E element);
 
     /**
-     * Gets the true number of elements in the list. This is 'true' compared
-     * with the regular {@link #size()} method, with maxes out at
-     * {@link Integer#MAX_VALUE}. Note that we could try to fill a list with
-     * more than {@link Long#MAX_VALUE}, but that is a LOOOOOOT of elements (9
-     * quintillion, that's 9 billion billion elements).
-     *
-     * @return The number of elements in the list. May be 0 if empty.
-     */
-    long massiveSize();
-
-    /**
      * Gets a sublist of the elements. The 'zero'th element in the sublist will
      * be the element at fromIndex in the parent list.
      *
