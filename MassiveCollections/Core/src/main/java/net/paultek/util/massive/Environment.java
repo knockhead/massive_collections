@@ -51,4 +51,10 @@ public interface Environment {
      * @return A new list.
      */
     <E> MassiveList<E> createList(Class<? extends E> elementClass);
+
+    /**
+     * Shuts down the environment, closing any open file handles. Must be called
+     * when application is closing.
+     */
+    void shutdown();
 }
