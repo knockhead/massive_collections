@@ -53,6 +53,12 @@ public interface Environment {
     <E> MassiveList<E> createList(Class<? extends E> elementClass);
 
     /**
+     * Initialises the environment. This usually requires that
+     * {@link #load(java.util.Properties)} has been called prior to this.
+     */
+    void init();
+
+    /**
      * Shuts down the environment, closing any open file handles. Must be called
      * when application is closing.
      */
