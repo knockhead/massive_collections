@@ -15,7 +15,11 @@
  */
 package net.paultek.util.massive;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * An environment for generation of {@link MassiveCollection}, which performs
@@ -30,6 +34,8 @@ public class StandardEnvironment implements Environment {
     public static final String CLASSES = "net.paultek.util.massive.StandardEnvironment.classes";
 
     private final Properties properties;
+    private int memoryMax;
+    private List<Class<?>> classes;
 
     public StandardEnvironment() {
         this.properties = new Properties();
@@ -47,7 +53,17 @@ public class StandardEnvironment implements Environment {
 
     @Override
     public void init() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        memoryMax = Integer.parseInt(properties.getProperty(MEMORY_MAX));
+
+        classes = new ArrayList<>();
+        for (String className : properties.getProperty(CLASSES).split(",")) {
+            try {
+                Class<?> clazz = Class.forName(className);
+                classes.add(clazz);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(StandardEnvironment.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
